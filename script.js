@@ -15,4 +15,17 @@ document.addEventListener("DOMContentLoaded", function () {
         canvas.appendChild(cell);
     }
 });
+#color-picker {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.color-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+
 

@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect traditional memories</title>
+    <title>Minimal Ψηφιακός Καμβάς Κεντήματος</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Connect traditional memories</h1>
-        <p>Make your heritage a digital concept.</p>
+        <h1>Ψηφιακός Καμβάς Κεντήματος</h1>
+        <p>Επιλέξτε βελονιά και χρώμα για να δημιουργήσετε το ψηφιακό σας κέντημα.</p>
     </header>
 
     <div class="container">
         <!-- Παλέτα Χρωμάτων -->
         <div id="color-picker">
-            <button class="color-btn" style="background-color: #ab0000;"></button>
-            <button class="color-btn" style="background-color: #00aa31;"></button>
-            <button class="color-btn" style="background-color: #6a611a;"></button>
-            <button class="color-btn" style="background-color: #1a266a;"></button>
-            <button class="color-btn" style="background-color: #d59320;"></button>
-            <button class="color-btn" style="background-color: #df9d87;"></button>
+            <button class="color-btn" style="background-color: #c8df87;"></button>
+            <button class="color-btn" style="background-color: #a40707;"></button>
         </div>
 
         <!-- Επιλογές Βελονιάς -->
@@ -33,14 +29,14 @@
         <!-- Καμβάς -->
         <div id="canvas"></div>
 
-        <!-- Κουμπιά Ενεργειών -->
+        <!-- Κουμπιά Ελέγχου -->
         <div class="controls">
             <button onclick="saveCanvas()">Αποθήκευση Καμβά</button>
             <button onclick="downloadCanvasAsImage()">Λήψη Κεντήματος</button>
         </div>
     </div>
 
-    <!-- Σύνδεση των JavaScript και της html2canvas βιβλιοθήκης -->
+    <!-- JavaScript -->
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 </body>

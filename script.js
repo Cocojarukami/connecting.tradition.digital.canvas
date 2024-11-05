@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const canvas = document.getElementById("canvas");
     const gridSize = 20; // Μέγεθος πλέγματος 20x20
 
-    let selectedColor = "#ffa07a"; // Προεπιλεγμένο χρώμα
+    let selectedColor = "#ab0000"; // Προεπιλεγμένο χρώμα
     let selectedStitch = "cross"; // Προεπιλεγμένος τύπος βελονιάς
 
     // Δημιουργία των κελιών στο πλέγμα

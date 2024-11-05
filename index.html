@@ -7,31 +7,38 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Ψηφιακός Καμβάς Κεντήματος</h1>
+    <header>
+        <h1>Ψηφιακός Καμβάς Κεντήματος</h1>
+        <p>Δημιουργήστε το δικό σας ψηφιακό κέντημα με έναν συνδυασμό παραδοσιακού και μοντέρνου στυλ.</p>
+    </header>
 
-    <!-- Παλέτα Χρωμάτων -->
-    <div id="color-picker">
-        <button class="color-btn" style="background-color: #ab0000;"></button>
-        <button class="color-btn" style="background-color: #00aa31;"></button>
-        <button class="color-btn" style="background-color: #6a611a;"></button>
-        <button class="color-btn" style="background-color: #1a266a;"></button>
-        <button class="color-btn" style="background-color: #d59320;"></button>
-        <button class="color-btn" style="background-color: #df9d87;"></button>
+    <div class="container">
+        <!-- Παλέτα Χρωμάτων -->
+        <div id="color-picker">
+            <button class="color-btn" style="background-color: #ab0000;"></button>
+            <button class="color-btn" style="background-color: #00aa31;"></button>
+            <button class="color-btn" style="background-color: #6a611a;"></button>
+            <button class="color-btn" style="background-color: #1a266a;"></button>
+            <button class="color-btn" style="background-color: #d59320;"></button>
+            <button class="color-btn" style="background-color: #df9d87;"></button>
+        </div>
+
+        <!-- Επιλογές Βελονιάς -->
+        <div id="stitch-picker">
+            <button class="stitch-btn" data-stitch="cross">Σταυροβελονιά</button>
+            <button class="stitch-btn" data-stitch="line">Γραμμή</button>
+            <button class="stitch-btn" data-stitch="dot">Κύκλος</button>
+        </div>
+
+        <!-- Καμβάς -->
+        <div id="canvas"></div>
+
+        <!-- Κουμπιά Ενεργειών -->
+        <div class="controls">
+            <button onclick="saveCanvas()">Αποθήκευση Καμβά</button>
+            <button onclick="downloadCanvasAsImage()">Λήψη Κεντήματος</button>
+        </div>
     </div>
-
-    <!-- Επιλογές Βελονιάς -->
-    <div id="stitch-picker">
-        <button class="stitch-btn" data-stitch="cross">Σταυροβελονιά</button>
-        <button class="stitch-btn" data-stitch="line">Γραμμή</button>
-        <button class="stitch-btn" data-stitch="dot">Κύκλος</button>
-    </div>
-
-    <!-- Καμβάς -->
-    <div id="canvas"></div>
-
-    <!-- Κουμπιά Ενεργειών -->
-    <button onclick="saveCanvas()">Αποθήκευση Καμβά</button>
-    <button onclick="downloadCanvasAsImage()">Λήψη Κεντήματος ως Εικόνα</button>
 
     <!-- Σύνδεση των JavaScript και της html2canvas βιβλιοθήκης -->
     <script src="script.js"></script>

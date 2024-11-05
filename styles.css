@@ -25,3 +25,19 @@ body {
 .cell.selected {
     background-color: #ffa07a; /* Χρώμα για την βελονιά */
 }
+let selectedColor = "#ffa07a"; // Προεπιλεγμένο χρώμα
+
+// Ανάκτηση των κουμπιών χρωμάτων
+document.querySelectorAll(".color-btn").forEach(button => {
+    button.addEventListener("click", function () {
+        selectedColor = this.style.backgroundColor;
+    });
+});
+
+// Ενημέρωση του cell για να χρησιμοποιεί το επιλεγμένο χρώμα
+document.querySelectorAll(".cell").forEach(cell => {
+    cell.addEventListener("click", function () {
+        cell.style.backgroundColor = selectedColor;
+    });
+});
+

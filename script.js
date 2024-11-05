@@ -1,58 +1,72 @@
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
-    margin: 0;
-    padding: 20px;
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const canvas = document.getElementById("canvas");
+    const gridSize = 20; // Μέγεθος πλέγματος 20x20
 
-h1 {
-    color: #333;
-}
+    let selectedColor = "#ffa07a"; // Προεπιλεγμένο χρώμα
+    let selectedStitch = "cross"; // Προεπιλεγμένος τύπος βελονιάς
 
-#color-picker, #stitch-picker {
-    margin: 10px;
-    display: flex;
-    gap: 10px;
-}
+    // Δημιουργία των κελιών στο πλέγμα
+    for (let i = 0; i < gridSize * gridSize; i++) {
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
 
-.color-btn, .stitch-btn {
-    width: 30px;
-    height: 30px;
-    border: none;
-    cursor: pointer;
-}
+        // Προσθήκη διαδραστικότητας για κάθε κελί
+        cell.addEventListener("click", function () {
+            cell.style.backgroundColor = selectedColor;
+            cell.className = `cell ${selectedStitch}`; // Εφαρμόζει την επιλεγμένη βελονιά
+        });
 
-#canvas {
-    display: grid;
-    grid-template-columns: repeat(20, 20px);
-    grid-template-rows: repeat(20, 20px);
-    gap: 1px;
-    margin-top: 20px;
-}
+        canvas.appendChild(cell);
+    }
 
-.cell {
-    width: 20px;
-    height: 20px;
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    cursor: pointer;
-}
+    // Επιλογή χρώματος
+    document.querySelectorAll(".color-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            selectedColor = this.style.backgroundColor;
+        });
+    });
 
-/* Στυλ για διαφορετικές βελονιές */
-.cross {
-    background-image: url('cross-stitch.png'); /* Αντικατάστησε με το σωστό μοτίβο */
-    background-size: cover;
-}
+    // Επιλογή τύπου βελονιάς
+    document.querySelectorAll(".stitch-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            selectedStitch = this.getAttribute("data-stitch");
+        });
+    });
 
-.line {
-    background-image: url('line-stitch.png'); /* Αντικατάστησε με το σωστό μοτίβο */
-    background-size: cover;
-}
+    // Αποθήκευση Καμβά στον Local Storage
+    window.saveCanvas = function() {
+        const canvasData = [];
+        document.querySelectorAll(".cell").forEach(cell => {
+            canvasData.push({
+                color: cell.style.backgroundColor,
+                stitch: cell.className.replace("cell ", "") // Αφαιρεί την κλάση "cell"
+            });
+        });
+        localStorage.setItem("canvasData", JSON.stringify(canvasData));
+        alert("Ο καμβάς αποθηκεύτηκε!");
+    };
 
-.dot {
-    background-image: url('dot-stitch.png'); /* Αντικατάστησε με το σωστό μοτίβο */
-    background-size: cover;
-}
+    // Επαναφορά Καμβά από τον Local Storage
+    function loadCanvas() {
+        const canvasData = JSON.parse(localStorage.getItem("canvasData"));
+        if (canvasData) {
+            document.querySelectorAll(".cell").forEach((cell, index) => {
+                cell.style.backgroundColor = canvasData[index].color;
+                cell.className = `cell ${canvasData[index].stitch}`;
+            });
+        }
+    }
+
+    // Λήψη του καμβά ως εικόνα
+    window.downloadCanvasAsImage = function() {
+        html2canvas(document.getElementById("canvas")).then(canvas => {
+            const link = document.createElement("a");
+            link.download = "digital_stitching.png";
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        });
+    };
+
+    // Κάλεσε τη loadCanvas όταν φορτώνει η σελίδα
+    loadCanvas();
+});

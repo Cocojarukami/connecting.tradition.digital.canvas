@@ -1,22 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Stitching Canvas</title>
+    <title>Ψηφιακός Καμβάς Κεντήματος</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Ψηφιακός Καμβάς Κεντήματος</h1>
+
+    <!-- Παλέτα Χρωμάτων -->
+    <div id="color-picker">
+        <button class="color-btn" style="background-color: #ffa07a;"></button>
+        <button class="color-btn" style="background-color: #00bcd4;"></button>
+        <button class="color-btn" style="background-color: #8bc34a;"></button>
+        <button class="color-btn" style="background-color: #ffeb3b;"></button>
+    </div>
+
+    <!-- Επιλογές Βελονιάς -->
+    <div id="stitch-picker">
+        <button class="stitch-btn" data-stitch="cross">Σταυροβελονιά</button>
+        <button class="stitch-btn" data-stitch="line">Γραμμή</button>
+        <button class="stitch-btn" data-stitch="dot">Κύκλος</button>
+    </div>
+
+    <!-- Καμβάς -->
     <div id="canvas"></div>
+
+    <!-- Κουμπιά Ενεργειών -->
+    <button onclick="saveCanvas()">Αποθήκευση Καμβά</button>
+    <button onclick="downloadCanvasAsImage()">Λήψη Κεντήματος ως Εικόνα</button>
+
+    <!-- Σύνδεση των JavaScript και της html2canvas βιβλιοθήκης -->
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 </body>
 </html>
-<div id="color-picker">
-    <button class="color-btn" style="background-color: #ffa07a;"></button>
-    <button class="color-btn" style="background-color: #00bcd4;"></button>
-    <button class="color-btn" style="background-color: #8bc34a;"></button>
-    <button class="color-btn" style="background-color: #ffeb3b;"></button>
-    <!-- Πρόσθεσε περισσότερα κουμπιά με χρώματα -->
-</div>
-

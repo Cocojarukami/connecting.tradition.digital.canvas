@@ -1,19 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
     const canvas = document.getElementById("canvas");
-    const gridSize = 20; // Μέγεθος πλέγματος 20x20
+    const gridSize = 20;
+    let selectedColor = "#a40707";
+    let selectedStitch = "cross";
 
-    let selectedColor = "#ab0000"; // Προεπιλεγμένο χρώμα
-    let selectedStitch = "cross"; // Προεπιλεγμένος τύπος βελονιάς
-
-    // Δημιουργία των κελιών στο πλέγμα
+    // Δημιουργία των κελιών με SVG
     for (let i = 0; i < gridSize * gridSize; i++) {
         const cell = document.createElement("div");
         cell.classList.add("cell");
 
-        // Προσθήκη διαδραστικότητας για κάθε κελί
+        // Δημιουργία SVG για την βελονιά
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("viewBox", "0 0 24 24");
+        svg.classList.add("stitch-svg");
+
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", "M12 0L15 5H9L12 0Z"); // Παράδειγμα βελονιάς
+        path.setAttribute("fill", selectedColor);
+
+        svg.appendChild(path);
+        cell.appendChild(svg);
+
         cell.addEventListener("click", function () {
-            cell.style.backgroundColor = selectedColor;
-            cell.className = `cell ${selectedStitch}`; // Εφαρμόζει την επιλεγμένη βελονιά
+            path.setAttribute("fill", selectedColor);
+            path.setAttribute("d", getStitchPath(selectedStitch)); // Αλλάζει τον τύπο βελονιάς
         });
 
         canvas.appendChild(cell);
@@ -33,34 +43,20 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Αποθήκευση και φόρτωση όπως πριν...
-});
-
-    // Αποθήκευση Καμβά στον Local Storage
+    // Αποθήκευση καμβά
     window.saveCanvas = function() {
         const canvasData = [];
-        document.querySelectorAll(".cell").forEach(cell => {
+        document.querySelectorAll(".cell path").forEach(path => {
             canvasData.push({
-                color: cell.style.backgroundColor,
-                stitch: cell.className.replace("cell ", "") // Αφαιρεί την κλάση "cell"
+                color: path.getAttribute("fill"),
+                d: path.getAttribute("d"),
             });
         });
         localStorage.setItem("canvasData", JSON.stringify(canvasData));
         alert("Ο καμβάς αποθηκεύτηκε!");
     };
 
-    // Επαναφορά Καμβά από τον Local Storage
-    function loadCanvas() {
-        const canvasData = JSON.parse(localStorage.getItem("canvasData"));
-        if (canvasData) {
-            document.querySelectorAll(".cell").forEach((cell, index) => {
-                cell.style.backgroundColor = canvasData[index].color;
-                cell.className = `cell ${canvasData[index].stitch}`;
-            });
-        }
-    }
-
-    // Λήψη του καμβά ως εικόνα
+    // Λήψη εικόνας καμβά
     window.downloadCanvasAsImage = function() {
         html2canvas(document.getElementById("canvas")).then(canvas => {
             const link = document.createElement("a");
@@ -70,6 +66,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
-    // Κάλεσε τη loadCanvas όταν φορτώνει η σελίδα
-    loadCanvas();
+    // Λειτουργία για τη μορφή της βελονιάς
+    function getStitchPath(stitchType) {
+        if (stitchType === "cross") return "M12 0L15 5H9L12 0Z"; // Σταυροβελονιά
+        if (stitchType === "line") return "M5 12H19"; // Γραμμή
+        if (stitchType === "dot") return "M12 12m-2,0a2,2 0 1,0 4,0a2,2 0 1,0 -4,0"; // Κύκλος
+        return "";
+    }
 });

@@ -78,9 +78,20 @@ p {
 }
 
 /* Στυλ για διαφορετικές βελονιές */
-.cross { background-image: url('cross-stitch.svg'); background-size: cover; }
-.line { background-image: url('line-stitch.svg'); background-size: cover; }
-.dot { background-image: url('dot-stitch.svg'); background-size: cover; }
+.cross {
+    background-image: url('images/cross-stitch.png');
+    background-size: cover;
+}
+
+.line {
+    background-image: url('images/line-stitch.png');
+    background-size: cover;
+}
+
+.dot {
+    background-image: url('images/dot-stitch.png');
+    background-size: cover;
+}
 
 .controls {
     margin-top: 15px;

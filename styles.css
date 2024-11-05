@@ -1,15 +1,15 @@
 :root {
-    --bg-color: #eadfc2; /* Απαλό φόντο που θυμίζει παραδοσιακό χαρτί */
-    --main-border-color: #c4aa6c; /* Παραδοσιακό χρώμα περιγράμματος */
-    --button-bg-color: #c4aa6c; /* Χρώμα κουμπιού */
-    --button-hover-color: #ab7f4e; /* Χρώμα hover κουμπιού */
-    --text-color: #333; /* Σκούρο χρώμα για το κείμενο */
-    --overlay-color: rgba(210, 180, 140, 0.3); /* Overlay για παραδοσιακή υφή */
+    --bg-color: #c8df87; /* Χρώμα φόντου */
+    --accent-color: #a40707; /* Χρώμα προεπιλογής και τόνου */
+    --button-bg-color: #a40707;
+    --button-hover-color: #870505;
+    --text-color: #333;
+    --cell-border-color: #870505;
 }
 
 body {
     background-color: var(--bg-color);
-    font-family: 'Georgia', serif; /* Στυλ γραμματοσειράς που θυμίζει παραδοσιακό */
+    font-family: Arial, sans-serif;
     color: var(--text-color);
     margin: 0;
     padding: 20px;
@@ -25,23 +25,20 @@ header {
 
 h1 {
     font-size: 2rem;
-    color: var(--text-color);
+    color: var(--accent-color);
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 2px;
 }
 
 p {
     font-size: 1rem;
     color: #555;
-    margin-top: 10px;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
 }
 
 #color-picker, #stitch-picker {
@@ -53,9 +50,9 @@ p {
 .color-btn, .stitch-btn {
     width: 30px;
     height: 30px;
-    border: 1px solid var(--main-border-color);
+    border: 2px solid var(--accent-color);
     cursor: pointer;
-    border-radius: 3px;
+    background-color: var(--bg-color);
 }
 
 #canvas {
@@ -65,53 +62,32 @@ p {
     gap: 1px;
     margin-top: 10px;
     background-color: #fff;
-    border: 1px solid var(--main-border-color);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--accent-color);
 }
 
 .cell {
     width: 20px;
     height: 20px;
-    background-color: #ffffff;
-    border: 1px solid var(--main-border-color);
+    border: 1px solid var(--cell-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
 
-/* Στυλ για διαφορετικές βελονιές */
-.cross {
-    background-image: url('images/cross-stitch.png');
-    background-size: cover;
-}
-
-.line {
-    background-image: url('images/line-stitch.png');
-    background-size: cover;
-}
-
-.dot {
-    background-image: url('images/dot-stitch.png');
-    background-size: cover;
-}
-
-.controls {
-    margin-top: 15px;
-}
-
+/* Στυλ για τα κουμπιά */
 button {
     background-color: var(--button-bg-color);
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 15px;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
     font-weight: bold;
-    text-transform: uppercase;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.2s, transform 0.2s;
+    transition: background-color 0.2s;
 }
 
 button:hover {
     background-color: var(--button-hover-color);
-    transform: scale(1.05);
 }

@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+}
+
+#canvas {
+    display: grid;
+    grid-template-columns: repeat(20, 20px); /* Οριζόντια κελιά */
+    grid-template-rows: repeat(20, 20px);   /* Κάθετα κελιά */
+    gap: 1px;
+    margin-top: 20px;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+}
+
+.cell.selected {
+    background-color: #ffa07a; /* Χρώμα για την βελονιά */
+}
